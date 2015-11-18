@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- build:css ./styles/weekly-manage.css -->
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./styles/weekly-manage.css">
+  <!-- endbuild -->
+
+</head>
+<body ng-app="weeklyManageApp">
+<% include ./views/common/header.html %>
+<% include ./views/weekly/weekly-manage.html %>
+<% include ./views/common/footer.html %>
+
+<!-- build:js ./scripts/vendor-weekly-manage.js -->
+<script src="./bower_components/jquery/dist/jquery.js"></script>
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-route/angular-route.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- endbuild -->
+
+<!-- build:js ./scripts/weekly-manage.js -->
+<script src="./scripts/weekly/apps/app-manage.js"></script>
+<script src="./scripts/services/httpInterceptor.js"></script>
+<script src="./scripts/weekly/services/service-manage.js"></script>
+<script src="./scripts/controllers/controller-common.js"></script>
+<script src="./scripts/weekly/controllers/controller-manage.js"></script>
+<script src="./scripts/directives/directive-link-active.js"></script>
+<script src="./scripts/filters/filter-truncate.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

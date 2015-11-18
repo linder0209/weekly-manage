@@ -1,0 +1,58 @@
+//周报管理样式
+.weekly-manage {
+  .page-header {
+    margin-top: @margin-lg;
+  }
+}
+
+.weekly-btn-group {
+  .btn-group + .btn-group {
+    margin-left: @margin-md;
+  }
+  button + button {
+    margin-left: @margin-md;
+  }
+}
+
+.weekly-search-text {
+  margin-left: 0 !important;
+  margin-top: 5px;
+  width: 90%;
+}
+
+@media (min-width: 420px) {
+  .weekly-search-text {
+    margin-left: 10px !important;
+    margin-top: 0;
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .weekly-search-text {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .weekly-search-text {
+    width: 30%;
+  }
+}
+
+// 周报表单模板
+.weekly-container {
+  margin-top: 10px;
+  > .row {
+    padding: 5px 0;
+    border-bottom: 1px solid @brand-info;
+    > div {
+      border-left: 1px solid @brand-info;
+      border-right: 1px solid @brand-info;
+      margin-right: -1px;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,199 @@
+/**
+ * 处理一些样式的前缀
+ * see Bootstrap  'less/mixins/vendor-prefixes.less'
+**/
+.has-success .form-control {
+  border-color: #428bca;
+}
+.has-success .form-control:focus {
+  border-color: #3071a9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
+}
+html,
+body {
+  height: auto;
+  min-height: 100%;
+}
+html {
+  position: relative;
+}
+body {
+  padding-top: 50px;
+  font-family: tahoma, arial, "宋体", sans-serif;
+}
+.link {
+  color: #5697d0;
+}
+/**
+* 外边距
+**/
+.margin-top-md {
+  margin-top: 10px;
+}
+.margin-top-vl {
+  margin-top: 30px;
+}
+.margin-top-hg {
+  margin-top: 50px;
+}
+.margin-left-md {
+  margin-left: 10px;
+}
+.margin-left-lg {
+  margin-left: 20px;
+}
+.margin-bottom-sm {
+  margin-bottom: 5px;
+}
+.margin-bottom-vl {
+  margin-bottom: 30px;
+}
+.pos-static {
+  position: static;
+}
+/**
+ * 页面头部样式
+**/
+.weekly-header.navbar-inverse {
+  background-color: #193c5a;
+  border-color: #0e2132;
+  background-image: -webkit-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: -o-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: linear-gradient(to bottom, #1f496e 0%, #193c5a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f496e', endColorstr='#ff193c5a', GradientType=0);
+}
+.weekly-header.navbar-inverse .navbar-brand {
+  color: #e1edf7;
+}
+.weekly-header.navbar-inverse .navbar-brand:hover,
+.weekly-header.navbar-inverse .navbar-brand:focus {
+  color: #fff;
+}
+.weekly-header.navbar-inverse .navbar-brand.active {
+  color: #fff;
+  font-weight: bold;
+  background-color: #183956;
+}
+.weekly-header.navbar-inverse .navbar-nav > li > a {
+  color: #e1edf7;
+}
+.weekly-header.navbar-inverse .navbar-nav > li > a:hover,
+.weekly-header.navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+}
+.weekly-header.navbar-inverse .navbar-nav > li.active {
+  font-weight: bold;
+}
+.weekly-header.navbar-inverse .navbar-nav > li.active a,
+.weekly-header.navbar-inverse .navbar-nav > li.active a:hover,
+.weekly-header.navbar-inverse .navbar-nav > li.active a:focus {
+  background-color: #183956;
+}
+/*
+* 页面底部样式
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #245682;
+  border-bottom: 1px solid #193c5a;
+  background-image: -webkit-linear-gradient(top, #2a6496 0%, #193c5a 100%);
+  background-image: -o-linear-gradient(top, #2a6496 0%, #193c5a 100%);
+  background-image: linear-gradient(to bottom, #2a6496 0%, #193c5a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2a6496', endColorstr='#ff193c5a', GradientType=0);
+  color: #b9d4ec;
+  padding: 5px 20px;
+  width: 100%;
+}
+.footer-assist {
+  padding-top: 30px;
+}
+.weekly-manage .page-header {
+  margin-top: 20px;
+}
+.weekly-btn-group .btn-group + .btn-group {
+  margin-left: 10px;
+}
+.weekly-btn-group button + button {
+  margin-left: 10px;
+}
+.weekly-search-text {
+  margin-left: 0 !important;
+  margin-top: 5px;
+  width: 90%;
+}
+@media (min-width: 420px) {
+  .weekly-search-text {
+    margin-left: 10px !important;
+    margin-top: 0;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .weekly-search-text {
+    width: 40%;
+  }
+}
+@media (min-width: 1200px) {
+  .weekly-search-text {
+    width: 30%;
+  }
+}
+.weekly-container {
+  margin-top: 10px;
+}
+.weekly-container > .row {
+  padding: 5px 0;
+  border-bottom: 1px solid #5bc0de;
+}
+.weekly-container > .row > div {
+  border-left: 1px solid #5bc0de;
+  border-right: 1px solid #5bc0de;
+  margin-right: -1px;
+}
+.weekly-container > .row > div:last-child {
+  border-right: 0;
+}
+/**
+ * ajax loading
+**/
+.ajax-loading-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: #ccc;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.ajax-loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 18px;
+  background: url("../images/loading_icon.gif") no-repeat;
+  border: 1px solid #428bca;
+  -webkit-box-shadow: 0 0 5px 5px #777;
+  box-shadow: 0 0 5px 5px #777;
+  border-radius: 5px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+/**
+ * 以下是一些通用的Angular 动画 css
+**/
+.animate-show {
+  -webkit-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+  opacity: 1;
+}
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+}
