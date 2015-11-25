@@ -1,0 +1,25 @@
+<table class="table table-weekly">
+    <tbody>
+    <tr>
+      <td class="text-middle" rowspan="4" style="width: 10%;"><strong>团队管理</strong></td>
+      <td style="width: 10%;"><strong>招聘</strong></td>
+      <td style="width: 35%;" contenteditable="true"></td>
+      <td style="width: 45%;" contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td><strong>培训和辅导</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td><strong>团队建设</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td><strong>管理改进</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    </tbody>
+  </table>

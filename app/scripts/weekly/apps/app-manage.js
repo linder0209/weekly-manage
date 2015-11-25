@@ -14,6 +14,14 @@ angular.module('weeklyManageApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap'])
         templateUrl: 'views/weekly/weekly.html',
         controller: 'WeeklyCtrl'
       })
+      .when('/weekly/:id', {
+        templateUrl: 'views/weekly/weekly.html',
+        controller: 'WeeklyCtrl'
+      })
+      .when('/tmpl', {
+        templateUrl: 'views/weekly/tmpl.html',
+        controller: 'TmplCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

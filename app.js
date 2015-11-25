@@ -31,9 +31,10 @@ var rootPath = path.join(__dirname, app.get('env') === 'development' ? 'app' : '
 app.use(favicon(rootPath + '/favicon.ico'));
 
 app.use(logger('dev'));
-app.use(bodyParser({limit: '10mb'}));//设置前端post提交最大内容
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false, limit: '10mb'}));//设置前端post提交最大内容
+// parse application/json
+app.use(bodyParser.json({limit: '1mb'}));
 app.use(cookieParser());
 
 //定义路由

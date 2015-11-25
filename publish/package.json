@@ -1,0 +1,41 @@
+{
+  "name": "weeklyManage",
+  "version": "0.1.0",
+  "authors": [
+    ""
+  ],
+  "description": "This is a webapp for managing weekly.",
+  "keywords": [
+    "weekly",
+    "manage"
+  ],
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "debug": "^2.2.0",
+    "express": "^4.13.3",
+    "ejs": "^2.3.4",
+    "morgan": "^1.6.1",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.8.3",
+    "cheerio": "^0.19.0",
+    "xlsx": "^0.8.0",
+    "node-xlsx": "^0.6.0",
+    "moment": "^2.10.6",
+    "promise": "^7.0.4"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/weekly-manage.js"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ]
+}

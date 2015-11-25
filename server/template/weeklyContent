@@ -1,0 +1,32 @@
+<table class="table table-weekly">
+    <caption>工作进展</caption>
+    <thead>
+    <tr>
+      <th style="width: 10%;">分类</th>
+      <th style="width: 45%;">本周工作内容</th>
+      <th style="width: 45%;">下周计划</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="text-middle" contenteditable="true"><strong>账户产品</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td class="text-middle" contenteditable="true"><strong>支付产品</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td class="text-middle" contenteditable="true"><strong>运营产品</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    <tr>
+      <td class="text-middle" contenteditable="true"><strong>行业产品</strong></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    </tbody>
+  </table>

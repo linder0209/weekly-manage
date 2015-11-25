@@ -14,7 +14,8 @@
         </a>
       </div>
 
-      <div class="btn-group weekly-search-text">
+      <!--搜索功能暂时不实现-->
+      <!--<div class="btn-group weekly-search-text">
         <div class="input-group has-success">
           <input type="text" placeholder="请输入关键字搜索周报" class="form-control" ng-model="searchContent">
               <span class="input-group-btn">
@@ -23,7 +24,7 @@
                 </button>
               </span>
         </div>
-      </div>
+      </div>-->
     </div>
     <hr/>
 
@@ -33,28 +34,29 @@
         <th style="width: 3%;">
           <input type="checkbox"  ng-model="grid.checked" ng-change="selectAll()">
         </th>
-        <th style="width: 5%;">&nbsp;</th>
         <th style="width: 30%;">周报标题</th>
-        <th style="width: 25%;">期数</th>
+        <th style="width: 25%;">周数</th>
         <th style="width: 20%;">时间段</th>
-        <th style="width: 20%;">创建日期</th>
+        <th style="width: 15%;">创建日期</th>
+        <th style="width: 10%;">&nbsp;</th>
       </tr>
       </thead>
       <tbody>
       <tr ng-repeat="item in items" id="{{item.id}}">
         <td><input type="checkbox" ng-model="item.checked" ng-change="selectItem()"/></td>
         <td>
-          <a class="glyphicon glyphicon-pencil" href="" ng-click="edit(item.id);"></a>
-          <a class="glyphicon glyphicon-trash" href="" ng-click="delete(item);"></a>
-        </td>
-        <td>
-          <div uib-popover="{{item.title}}" popover-trigger="mouseenter" popover-popup-delay="300">
-            <a ng-href="/{{item.account}}#/article/{{item.id}}" target="_blank">{{item.title | truncate:50:true:' ...'}}</a>
+          <div uib-popover="{{item.weeklyTitle}}" popover-trigger="mouseenter" popover-popup-delay="300">
+            <a ng-href="#/weekly/{{item.id}}">{{item.weeklyTitle | truncate:50:true:' ...'}}</a>
           </div>
         </td>
-        <td>{{item.categories | arrayToStr:'、':'未分类' | truncate:40:true:' ...'}}</td>
-        <td>{{item.labels | arrayToStr:'、':'—' | truncate:40:true:' ...'}}</td>
-        <td>{{item.createdDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{item.week}}</td>
+        <td>{{item.startDate + '—' + item.endDate}}</td>
+        <td>{{item.createdDate}}</td>
+        <td>
+          <a class="glyphicon glyphicon-export" ng-href="/weekly/export/{{item.id}}"></a>
+          <a class="glyphicon glyphicon-pencil" ng-href="#/weekly/{{item.id}}"></a>
+          <a class="glyphicon glyphicon-trash" href="" ng-click="delete(item);"></a>
+        </td>
       </tr>
       </tbody>
     </table>

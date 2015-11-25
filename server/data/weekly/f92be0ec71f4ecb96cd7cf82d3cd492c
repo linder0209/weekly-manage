@@ -1,0 +1,12 @@
+{
+ "weeklyTitle": "产品技术部-PUX用户体验周报",
+ "startDate": "2015年11月23日",
+ "endDate": "2015年11月29日",
+ "summary": {
+  "week": "444",
+  "nextWeek": "4444"
+ },
+ "weeklyContent": "<table class=\"table table-weekly\">\n    <caption>工作进展</caption>\n    <thead>\n    <tr>\n      <th style=\"width: 10%;\">分类</th>\n      <th style=\"width: 45%;\">本周工作内容</th>\n      <th style=\"width: 45%;\">下周计划</th>\n    </tr>\n    </thead>\n    <tbody>\n    <tr>\n      <td class=\"text-middle\" contenteditable=\"true\"><strong>账户产品</strong></td>\n      <td contenteditable=\"true\">44</td>\n      <td contenteditable=\"true\">55</td>\n    </tr>\n    <tr>\n      <td class=\"text-middle\" contenteditable=\"true\"><strong>支付产品</strong></td>\n      <td contenteditable=\"true\">44</td>\n      <td contenteditable=\"true\">55</td>\n    </tr>\n    <tr>\n      <td class=\"text-middle\" contenteditable=\"true\"><strong>运营产品</strong></td>\n      <td contenteditable=\"true\">44</td>\n      <td contenteditable=\"true\">66</td>\n    </tr>\n    <tr>\n      <td class=\"text-middle\" contenteditable=\"true\"><strong>行业产品</strong></td>\n      <td contenteditable=\"true\">44</td>\n      <td contenteditable=\"true\">66</td>\n    </tr>\n    </tbody>\n  </table>",
+ "weeklyFooter": "<table class=\"table table-weekly\">\n    <tbody>\n    <tr>\n      <td class=\"text-middle\" rowspan=\"4\" style=\"width: 10%;\"><strong>团队管理</strong></td>\n      <td style=\"width: 10%;\"><strong>招聘</strong></td>\n      <td style=\"width: 35%;\" contenteditable=\"true\">66</td>\n      <td style=\"width: 45%;\" contenteditable=\"true\">66</td>\n    </tr>\n    <tr>\n      <td><strong>培训和辅导</strong></td>\n      <td contenteditable=\"true\">66</td>\n      <td contenteditable=\"true\">66</td>\n    </tr>\n    <tr>\n      <td><strong>团队建设</strong></td>\n      <td contenteditable=\"true\">66</td>\n      <td contenteditable=\"true\">66</td>\n    </tr>\n    <tr>\n      <td><strong>管理改进</strong></td>\n      <td contenteditable=\"true\">66</td>\n      <td contenteditable=\"true\">66</td>\n    </tr>\n    </tbody>\n  </table>",
+ "id": "f92be0ec71f4ecb96cd7cf82d3cd492c"
+}

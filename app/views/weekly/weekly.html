@@ -1,48 +1,52 @@
 <div class="weekly-container">
-  <div class="row">
-    <div class="col-md-12 text-center"><strong>京东金融支付产品技术部</strong></div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6"><strong>产品技术部-产品管理部周报</strong></div>
-    <div class="col-md-3"><strong>2015年11月2日</strong></div>
-    <div class="col-md-3 text-right"><strong>2015年11月8日</strong></div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2"><strong>概述</strong></div>
-    <div class="col-md-5">
-      支持沃易购接入联调并完成上线；大额快捷支付收银台及支付平台方案确认，下周可启动开发；完成未激活会员体系上线影响范围评估；商城与钱包余额融合已确定客服退赔的资金处理方案和小于1000返余风险问题规避方案；金蝶明确合作模式和一期红包需求；永辉超市确认合作模式；钱包一卡通充值研发工作启动；
-      小金库开户流程改造金融app前端方案已确认；旺财原生版本上预发验证，主流程畅通，部分交互细节需调整；
-      企业站完成对记录中心模块的线上产品验收；平台商户绑定流程和分账流程确定方案；代理商入驻具备上线能力；
-      营销平台完成双11版本相关需求和问题的确认；完成后返类型的营销活动的框架梳理和通用逻辑整理；
-      企业站产品线问题梳理并重新划分企业站定位和工作内容；运营平台产品线问题梳理并重新划分产品线，调整人员分工，并协调相关协作团队建立项目团队，下周完成立项；
+  <div class="row form-inline has-info mb-10">
+    <div class="col-sm-8">
+      <label for="weeklyTitle">周报标题</label>
+      <input type="text" class="form-control" ng-model="weeklyForm.weeklyTitle" style="width:80%;" id="weeklyTitle"
+             placeholder="产品技术部-PUX用户体验周报">
     </div>
-    <div class="col-md-5">
-      商城余额融合赔退接入钱包沟通转入校验规则及公司转账问题；梳理校园白条、乡村推广等项目发放佣金到钱包余额的需求；确定旺财小金库专享方案，旺财灰度环境验收；
-      企业站运营问题跟进优化，完成5个已反馈问题的优化上线；完成付款码、扫一扫产品配置联调，和代理商入驻转运营及培训；
-      标准支付产品目录确定；APP收银台错误码提示统一配置开发跟进；完成大额快捷支付项目立项；确定网关及代付最终的入驻流程；同智能贴、京东到家、金融各方对免密支付整体流程和方案达成一致并启动立项；
-      三卡融合一期封闭卡新系统结项，二期预付卡开放平台需求评审并推动立项；
-      推动核心支付运营能力建设项目组立项；
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-primary btn-block" ng-click="save();">保存</button>
     </div>
   </div>
 
-  <table class="table table-striped table-hover">
-    <caption>工作进展</caption>
+  <!-- 周报头部 -->
+  <table class="table table-weekly">
+    <caption>京东金融支付产品技术部</caption>
     <thead>
     <tr>
+      <th style="width: 10%;"></th>
+      <th style="width: 45%;"><span class="inline-block">产品技术部-产品管理部周报</span></th>
+      <th style="width: 45%;">
+        <span class="pull-left inline-block js-start-date" contenteditable="true" ng-bind="weeklyForm.startDate"></span>
+        <span class="pull-right inline-block js-end-date" contenteditable="true" ng-bind="weeklyForm.endDate"></span>
+      </th>
+    </tr>
+    <tr>
       <th style="width: 10%;">分类</th>
-      <th style="width: 45%;">本周工作内容</th>
+      <th style="width: 45%;">本周总结</th>
       <th style="width: 45%;">下周计划</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="text-middle"><strong>概述</strong></td>
+      <td contenteditable="true" ng-bind-html="weeklyForm.summary.week" class="js-summary-week"></td>
+      <td contenteditable="true" ng-bind-html="weeklyForm.summary.nextWeek" class="js-summary-nextweek"></td>
     </tr>
     </tbody>
   </table>
+  <!-- 周报头部 end-->
 
+  <!-- 周报内容 -->
+  <div ng-bind-html="weeklyForm.weeklyContent" class="js-weekly-content"></div>
+
+  <!-- 周报底部 -->
+  <div ng-bind-html="weeklyForm.weeklyFooter" class="js-weekly-footer"></div>
+
+  <div class="row mt-10">
+    <div class="col-md-offset-8 col-md-2">
+      <button type="button" class="btn btn-primary btn-block" ng-click="save();">保存</button>
+    </div>
+  </div>
 </div>

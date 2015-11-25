@@ -1,0 +1,53 @@
+<div class="weekly-container">
+  <div class="row mb-10">
+    <div class="col-sm-offset-2 col-sm-2">
+      <button type="button" class="btn btn-primary btn-block" ng-click="save();">保存</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 weekly-tmpl-separator">
+      <h3 class="mt-0">工作进展</h3>
+      <textarea class="form-control" name="weeklyContent" ng-model="tmplForm.weeklyContent" style="height: 300px;"></textarea>
+      <h3>团队管理</h3>
+      <textarea class="form-control" name="weeklyFooter" ng-model="tmplForm.weeklyFooter" style="height: 300px;"></textarea>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-weekly">
+        <caption>京东金融支付产品技术部</caption>
+        <thead>
+        <tr>
+          <th style="width: 10%;"></th>
+          <th style="width: 45%;"><span class="inline-block">产品技术部-产品管理部周报</span></th>
+          <th style="width: 45%;">
+            <span class="pull-left inline-block"></span>
+            <span class="pull-right inline-block"></span>
+          </th>
+        </tr>
+        <tr>
+          <th style="width: 10%;">分类</th>
+          <th style="width: 45%;">本周总结</th>
+          <th style="width: 45%;">下周计划</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="text-middle"><strong>概述</strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div ng-bind-html="weeklyTmpl.weeklyContent"></div>
+
+      <div ng-bind-html="weeklyTmpl.weeklyFooter"></div>
+    </div>
+  </div>
+
+  <div class="row mt-10">
+    <div class="col-sm-offset-2 col-sm-2">
+      <button type="button" class="btn btn-primary btn-block" ng-click="save();">保存</button>
+    </div>
+  </div>
+</div>

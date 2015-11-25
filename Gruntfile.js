@@ -6,6 +6,9 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var path = require('path');
+var fs = require('fs');
+
 module.exports = function (grunt) {
 
   /* eslint-disable global-require */
@@ -125,7 +128,8 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
+            '!<%= yeoman.dist %>/.git{,*/}*',
+            '!<%= yeoman.dist %>/node_modules/**'
           ]
         }]
       },
@@ -136,7 +140,7 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          require('autoprefixer-core')({browsers: ['last 1 version']})
+          require('autoprefixer')({browsers: ['last 1 version']})
         ]
       },
       server: {
@@ -202,7 +206,7 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>',
+        dest: '<%= yeoman.webapp %>',
         flow: {
           html: {
             steps: {
@@ -217,14 +221,14 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      html: ['<%= yeoman.webapp %>/{,*/}*.html'],
+      css: ['<%= yeoman.webapp %>/styles/{,*/}*.css'],
+      js: ['<%= yeoman.webapp %>/scripts/{,*/}*.js'],
       options: {
         assetsDirs: [
-          '<%= yeoman.dist %>',
-          '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
+          '<%= yeoman.webapp %>',
+          '<%= yeoman.webapp %>/images',
+          '<%= yeoman.webapp %>/styles'
         ],
         patterns: {
           js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
@@ -264,7 +268,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.webapp %>/images'
         }]
       }
     },
@@ -275,7 +279,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.webapp %>/images'
         }]
       }
     },
@@ -290,9 +294,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= yeoman.webapp %>',
           src: ['*.html'],
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= yeoman.webapp %>'
         }]
       }
     },
@@ -330,23 +334,43 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.webapp %>',
           src: [
             '*.{ico,png,txt}',
             '*.html',
+            'views/{,*/}*.html',
+            'errors/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
+          dest: '<%= yeoman.webapp %>/images',
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
+          cwd: '<%= yeoman.app %>/bower_components/bootstrap/dist',
           src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= yeoman.webapp %>'
+        }, {
+          expand: true,
+          cwd: './',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            '<%= yeoman.server %>/**',
+            '!<%= yeoman.server %>/data/**'
+          ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.publish %>',
+          dest: '<%= yeoman.dist %>',
+          src: ['**']
+        }, {
+          expand: true,
+          cwd: 'bin',
+          dest: '<%= yeoman.dist %>/bin',
+          src: ['**']
         }]
       },
       styles: {
@@ -378,9 +402,57 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    /**
+     * 替换文件中的内容
+     * 默认会替换@@开头指定的内容，我们可以用option prefix 来改变，也可以用 usePrefix 禁用替换@@开头的内容，而设为替换任意指定的内容
+     * 支持正则表达式
+     * 这里顺便说一下参数 expand: true, flatten: true,
+     * expand 表示展开，flatten设为false表示按照源文件的目录结构copy，设为true会把所有文件copy到一个文件夹下
+     */
+    replace: {
+      app: {
+        options: {
+          usePrefix: false,// Default: true And  prefix Default: @@
+          patterns: [
+            {
+              match: 'environment = \'development\'',
+              replacement: 'environment = \'production\''
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['app.js'], dest: 'dist/'}
+        ]
+      }
+    },
+
+    /**
+     * 压缩server js
+     **/
+    uglify: {
+      server: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.dist %>/server',
+            src: '**/*.js',
+            dest: '<%= yeoman.dist %>/server'
+          }
+        ]
+      }
     }
   });
 
+  //创建临时数据文件
+  grunt.registerTask('createData', function () {
+    var rootPath = path.resolve(__dirname, appConfig.dist);
+    /*eslint-disable no-sync*/
+    fs.mkdirSync(rootPath + '/server/data');
+    fs.mkdirSync(rootPath + '/server/data/weekly');
+    fs.writeFileSync(rootPath + '/server/data/weekly-records.json', '', 'utf-8');
+  });
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -414,12 +486,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+    //'wiredep',
     'less:develop',//把less转换为css
     'useminPrepare',
     'concurrent:dist',
     'postcss',
-    'ngtemplates',
+    //'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
@@ -427,7 +499,10 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'replace:app',//替换文件
+    'htmlmin',
+    'uglify:server',// 压缩 server文件
+    'createData'
   ]);
 
   grunt.registerTask('default', [

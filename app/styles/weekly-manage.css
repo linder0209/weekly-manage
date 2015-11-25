@@ -10,6 +10,14 @@
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
 }
+.has-info .form-control {
+  border-color: #5bc0de;
+}
+.has-info .form-control:focus {
+  border-color: #31b0d5;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #b0e1ef;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #b0e1ef;
+}
 html,
 body {
   height: auto;
@@ -22,35 +30,23 @@ body {
   padding-top: 50px;
   font-family: tahoma, arial, "宋体", sans-serif;
 }
-.link {
-  color: #5697d0;
+/*
+* @description: 排版样式
+*/
+.text-middle {
+  vertical-align: middle;
 }
-/**
-* 外边距
-**/
-.margin-top-md {
+.inline-block {
+  display: inline-block;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mt-10 {
   margin-top: 10px;
 }
-.margin-top-vl {
-  margin-top: 30px;
-}
-.margin-top-hg {
-  margin-top: 50px;
-}
-.margin-left-md {
-  margin-left: 10px;
-}
-.margin-left-lg {
-  margin-left: 20px;
-}
-.margin-bottom-sm {
-  margin-bottom: 5px;
-}
-.margin-bottom-vl {
-  margin-bottom: 30px;
-}
-.pos-static {
-  position: static;
+.mt-0 {
+  margin-top: 0 !important;
 }
 /**
  * 页面头部样式
@@ -144,18 +140,53 @@ body {
 }
 .weekly-container {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
-.weekly-container > .row {
-  padding: 5px 0;
-  border-bottom: 1px solid #5bc0de;
+.table-weekly {
+  border: 1px solid #5bc0de;
+  margin-bottom: -1px;
 }
-.weekly-container > .row > div {
-  border-left: 1px solid #5bc0de;
-  border-right: 1px solid #5bc0de;
-  margin-right: -1px;
+.table-weekly > thead > tr > th,
+.table-weekly > tbody > tr > th,
+.table-weekly > tfoot > tr > th,
+.table-weekly > thead > tr > td,
+.table-weekly > tbody > tr > td,
+.table-weekly > tfoot > tr > td {
+  border: 1px solid #5bc0de;
 }
-.weekly-container > .row > div:last-child {
-  border-right: 0;
+.table-weekly > caption {
+  border: 1px solid #5bc0de;
+  border-bottom: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+.table-weekly .text-middle {
+  vertical-align: middle !important;
+}
+.table-weekly .inline-block {
+  padding: 5px;
+}
+[contenteditable] {
+  border: 2px solid transparent;
+  background-color: #f0f9fc;
+}
+[contenteditable]:focus {
+  outline: 0;
+  border: 2px solid #17639f;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(23, 99, 159, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(23, 99, 159, 0.6);
+}
+.weekly-form-inline .form-control {
+  display: inline-block;
+  vertical-align: middle;
+}
+.weekly-content {
+  min-height: 200px;
+}
+.weekly-tmpl-separator {
+  border-right: 3px solid #428bca;
 }
 /**
  * ajax loading
