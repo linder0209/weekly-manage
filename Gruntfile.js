@@ -365,7 +365,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.publish %>',
           dest: '<%= yeoman.dist %>',
-          src: ['**']
+          src: ['package.json']
         }, {
           expand: true,
           cwd: 'bin',
@@ -436,6 +436,12 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
+            cwd: '<%= yeoman.dist %>',
+            src: 'app.js',
+            dest: '<%= yeoman.dist %>'
+          },
+          {
+            expand: true,
             cwd: '<%= yeoman.dist %>/server',
             src: '**/*.js',
             dest: '<%= yeoman.dist %>/server'
@@ -451,6 +457,7 @@ module.exports = function (grunt) {
     /*eslint-disable no-sync*/
     fs.mkdirSync(rootPath + '/server/data');
     fs.mkdirSync(rootPath + '/server/data/weekly');
+    fs.mkdirSync(rootPath + '/server/data/excel');
     fs.writeFileSync(rootPath + '/server/data/weekly-records.json', '', 'utf-8');
   });
 

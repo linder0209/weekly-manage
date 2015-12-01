@@ -99,10 +99,10 @@ var weekly = {
 
   importData: function (req, res) {
     var id = req.params.id;
-    weeklyDao.importData(id, function (err) {
-      res.send({
-        success: err === null
-      });
+    weeklyDao.importData(id, function (err, excelPath, weeklyTitle) {
+      if (err === null) {
+        res.download(excelPath, weeklyTitle + '.xlsx');
+      }
     });
   }
 };

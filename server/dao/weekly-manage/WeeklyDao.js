@@ -4,7 +4,7 @@ var Promise = require('promise');
 var fs = require('fs');
 var moment = require('moment');
 var _ = require('underscore');
-var xlsx = require('node-xlsx');
+var xlsx = require('xlsx-node');
 var cheerio = require('cheerio'); //引用cheerio模块,使在服务器端像在客户端上操作DOM,不用正则表达式
 
 var Uuid = require('../../utils/Uuid');
@@ -201,6 +201,8 @@ WeeklyDao.prototype.saveTmpl = function (entity, callback) {
  * @param callback
  */
 WeeklyDao.prototype.importData = function (id, callback) {
+  var weeklyTitle, excelPath;
+
   readFile('./server/data/weekly/' + id, 'utf-8')
     .then(function (data) {
       var item = JSON.parse(data);
@@ -213,14 +215,31 @@ WeeklyDao.prototype.importData = function (id, callback) {
       excel.push(['工作进展', null, null, null, null]);
       excel.push(['分类', '本周工作内容', null, '下周计划', null]);
 
+      var merges = [
+        {s: {c: 0, r: 0}, e: {c: 4, r: 0}},
+        {s: {c: 0, r: 1}, e: {c: 2, r: 1}},
+        {s: {c: 1, r: 2}, e: {c: 2, r: 2}},
+        {s: {c: 3, r: 2}, e: {c: 4, r: 2}},
+        {s: {c: 1, r: 3}, e: {c: 2, r: 3}},
+        {s: {c: 3, r: 3}, e: {c: 4, r: 3}},
+        {s: {c: 0, r: 4}, e: {c: 4, r: 4}},
+        {s: {c: 1, r: 5}, e: {c: 2, r: 5}},
+        {s: {c: 3, r: 5}, e: {c: 4, r: 5}}
+      ];
+
+      var row = 5;
       $('table').find('tbody tr').each(function (index, item) {
+        row++;
         var $item = $(item);
         var $td = $item.find('td');
         excel.push([$td.eq(0).text(), $td.eq(1).text(), null, $td.eq(2).text(), null]);
+        merges.push({s: {c: 1, r: row}, e: {c: 2, r: row}}, {s: {c: 3, r: row}, e: {c: 4, r: row}});
       });
 
+      merges.push({s: {c: 0, r: row + 1}, e: {c: 0, r: row + $('table').find('tbody tr').length}});
       $ = cheerio.load(item.weeklyFooter);
       $('table').find('tbody tr').each(function (index, item) {
+        row++;
         var $item = $(item);
         var $td = $item.find('td');
         var arr = $td.map(function (index, item) {
@@ -231,18 +250,26 @@ WeeklyDao.prototype.importData = function (id, callback) {
           arr.unshift(null);
         }
         excel.push(arr);
+        merges.push({s: {c: 3, r: row}, e: {c: 4, r: row}});
       });
 
-      var buffer = xlsx.build([{name: item.weeklyTitle, data: excel}]);
+      weeklyTitle = item.weeklyTitle;
+      var buffer = xlsx.genExcel([{
+        name: item.weeklyTitle,
+        data: excel,
+        merges: merges
+      }]);
       /**
        * 缺少合并单元格，和设置列宽，待完善
        * https://github.com/SheetJS/js-xlsx  ws['!merges'] 合并单元格  ws['!cols'] 设置列宽
        * 可参考这里 http://sheetjs.com/demos/table.html
        */
-      return writeFile('./server/data/excel/' + Uuid.raw() + '.xlsx', buffer, 'binary');
+
+      excelPath = './server/data/excel/' + Uuid.raw() + '.xlsx';
+      return writeFile(excelPath, buffer, 'binary');
     })
     .then(function () {
-      return callback(null);
+      return callback(null, excelPath, weeklyTitle);
     })
     .then(null, function (err) {
       return callback(err);
